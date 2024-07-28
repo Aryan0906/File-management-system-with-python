@@ -1,0 +1,82 @@
+import os
+
+def create_file(filename):
+    try:
+        with open(filename, 'x') as file:
+            file.write('This is a sample file\n')
+            file.write('This file is created using Python\n')
+            file.write('This is the last line of the file\n')
+            file.write('Thank you for reading\n')
+            print(f"File written successfully: {filename}")
+    except FileExistsError:
+        print(f"File already exists: {filename}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def view_all_files():
+    files = os.listdir()
+    if not files:
+        print("No files found.")
+    else:
+        for file in files:
+            print(file)
+
+def delete_file(filename):
+    try:
+        os.remove(filename)
+        print(f"File deleted successfully: {filename}")
+    except FileNotFoundError:
+        print(f"File not found: {filename}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def edit_file(filename):
+    try:
+        with open(filename, 'a') as file:
+            content = input("Enter the content to be added: ")
+            file.write(content)
+            print(f"File edited successfully: {filename}")
+    except FileNotFoundError:
+        print(f"File not found: {filename}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def read_file(filename):
+    try:
+        with open(filename, 'r') as file:
+            print(file.read())
+    except FileNotFoundError:
+        print(f"File not found: {filename}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+def main():
+    while True:
+        print("1. Create a file")
+        print("2. View all files")
+        print("3. Delete a file")
+        print("4. Edit a file")
+        print("5. Read a file")
+        print("6. Exit")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            filename = input("Enter the filename: ")
+            create_file(filename)
+        elif choice == '2':
+            view_all_files()
+        elif choice == '3':
+            filename = input("Enter the filename: ")
+            delete_file(filename)
+        elif choice == '4':
+            filename = input("Enter the filename: ")
+            edit_file(filename)
+        elif choice == '5':
+            filename = input("Enter the filename: ")
+            read_file(filename)
+        elif choice == '6':
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()

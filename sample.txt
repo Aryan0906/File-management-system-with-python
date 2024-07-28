@@ -1,0 +1,5 @@
+Welcome to file handling in Python
+This is a sample file
+This file is created using Python
+This is the last line of the file
+Thank you for reading
